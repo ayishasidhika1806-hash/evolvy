@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f3ff" />
+    <meta name="description" content="EVOLVI is your personal space to build habits, plan your days, and celebrate your progress." />
+    <title>EVOLVI | Your next chapter</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Main menu">
+        <button class="brand" data-go="dashboard" aria-label="EVOLVI home">EVOLVI</button>
+        <div class="side-label">YOUR SPACE</div>
+        <nav class="side-nav" aria-label="Main navigation">
+          <button class="nav-item active" data-page="dashboard"><span class="nav-icon">⌂</span><span>Dashboard</span></button>
+          <button class="nav-item" data-page="planner"><span class="nav-icon">▦</span><span>Planner</span><span class="nav-count" id="planner-count">0</span></button>
+          <button class="nav-item" data-page="focus"><span class="nav-icon">◷</span><span>Focus room</span></button>
+          <button class="nav-item" data-page="goals"><span class="nav-icon">◎</span><span>Goals &amp; habits</span></button>
+          <button class="nav-item" data-page="journal"><span class="nav-icon">▤</span><span>Journal</span></button>
+          <button class="nav-item" data-page="progress"><span class="nav-icon">⌁</span><span>Progress</span></button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="sidebar-note"><span class="note-spark">✳</span><p>Little by little<br /><strong>looks good on you.</strong></p><span class="note-doodle">↗</span></div>
+          <button class="profile-button" id="profile-open"><span class="profile-avatar" id="profile-avatar">E</span><span class="profile-text"><strong id="profile-label">Your space</strong><small>Personal workspace</small></span><span class="profile-more">···</span></button>
+        </div>
+      </aside>
+
+      <div class="main-column">
+        <header class="topbar">
+          <div class="mobile-brand"><span class="brand-mark">E</span><span>EVOLVI</span></div>
+          <div class="breadcrumb"><span>YOUR SPACE</span><span class="breadcrumb-slash">/</span><strong id="page-label">Dashboard</strong></div>
+          <div class="topbar-actions"><span class="today-label" id="top-date"></span><button class="top-avatar" id="profile-shortcut" aria-label="Edit your profile">E</button></div>
+        </header>
+
+        <main class="content-wrap">
+          <section class="view active" id="view-dashboard" data-view="dashboard">
+            <div class="welcome-row">
+              <div><div class="eyebrow"><span class="eyebrow-star">✳</span> A FRESH PAGE, EVERY DAY</div><h1 id="welcome-title">Your day, your way.</h1><p class="welcome-copy">Make room for what matters. The small stuff adds up.</p></div>
+              <button class="date-card" id="dashboard-date" aria-label="Open planner"><span class="date-card-day" id="date-day">18</span><span><b id="date-weekday">SUNDAY</b><small id="date-month">OCTOBER 2026</small></span><span class="date-card-arrow">↗</span></button>
+            </div>
+
+            <div class="stat-grid">
+              <article class="stat-card stat-lavender"><div class="stat-card-top"><span>DAILY PROGRESS</span><span class="stat-icon">◔</span></div><div class="stat-number"><strong id="stat-percent">0</strong><small>%</small></div><div class="stat-foot"><span id="stat-tasks">0 of 0 tasks</span><span class="stat-mini-line"><i id="stat-progress-line"></i></span></div></article>
+              <article class="stat-card stat-pink"><div class="stat-card-top"><span>DAY STREAK</span><span class="stat-icon">✳</span></div><div class="stat-number"><strong id="stat-streak">0</strong><small>days</small></div><div class="stat-foot"><span>Showed up for yourself</span><span class="stat-accent">↗</span></div></article>
+              <article class="stat-card stat-sage"><div class="stat-card-top"><span>FOCUS TIME</span><span class="stat-icon">◷</span></div><div class="stat-number"><strong id="stat-focus">0</strong><small>min</small></div><div class="stat-foot"><span>Minutes this week</span><span class="stat-accent">↗</span></div></article>
+              <article class="stat-card stat-peach"><div class="stat-card-top"><span>HABITS TODAY</span><span class="stat-icon">✓</span></div><div class="stat-number"><strong id="stat-habits">0</strong><small id="stat-habits-total">/ 0</small></div><div class="stat-foot"><span>Daily rhythms kept</span><span class="stat-accent">✳</span></div></article>
+            </div>
+
+            <div class="dashboard-grid">
+              <section class="panel task-panel">
+                <div class="panel-heading"><div><div class="eyebrow">THE LITTLE THINGS</div><h2>Today’s focus <span class="count-bubble" id="task-count">0/0</span></h2></div><button class="text-link" data-go="planner">Open planner <span>↗</span></button></div>
+                <div class="task-list" id="task-list"></div>
+                <form class="quick-add" id="task-form"><span class="quick-add-plus">＋</span><input id="task-title" type="text" maxlength="72" placeholder="Add one small thing…" aria-label="New task" required /><select id="task-kind" aria-label="Task type"><option value="task">Task</option><option value="habit">Habit</option></select><button type="submit" aria-label="Add task">Add <span>↗</span></button></form>
+                <div class="task-panel-foot"><span><i class="legend-dot lavender-dot"></i> Tasks</span><span><i class="legend-dot sage-dot"></i> Habits</span><span id="task-motivation">One thing at a time.</span></div>
+              </section>
+
+              <section class="panel week-panel">
+                <div class="panel-heading"><div><div class="eyebrow">YOUR RHYTHM</div><h2>This week</h2></div><button class="round-arrow" data-go="progress" aria-label="See progress">↗</button></div>
+                <div class="week-summary"><strong id="week-total">0</strong><span>little wins<br />this week</span><span class="week-summary-note" id="week-average">Keep it yours.</span></div>
+                <div class="mini-chart" id="mini-chart" aria-label="Completions this week"></div>
+                <div class="chart-caption"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div>
+              </section>
+
+              <section class="panel focus-teaser">
+                <div class="focus-teaser-orbit orbit-one"></div><div class="focus-teaser-orbit orbit-two"></div>
+                <div class="focus-teaser-content"><span class="eyebrow">A LITTLE SPACE TO THINK</span><h2>One thing<br />at a time.</h2><p>Give your attention somewhere nice to land.</p><button class="soft-button" data-go="focus">Enter focus room <span>↗</span></button></div>
+                <div class="focus-moon"><span>✳</span></div><div class="focus-teaser-sticker">NO RUSH<br />JUST YOU</div>
+              </section>
+
+              <section class="panel goal-preview">
+                <div class="panel-heading"><div><div class="eyebrow">AIM A LITTLE HIGHER</div><h2>On your horizon</h2></div><button class="text-link" data-go="goals">All goals <span>↗</span></button></div>
+                <div id="goal-preview-list"></div>
+                <button class="goal-preview-add" data-go="goals"><span>＋</span> Give a goal a direction</button>
+              </section>
+
+              <section class="panel win-panel">
+                <div class="panel-heading"><div><div class="eyebrow">THAT’S SO YOU</div><h2>Recent wins</h2></div><span class="wins-stamp">✳</span></div>
+                <div id="recent-wins"></div>
+              </section>
+            </div>
+            <div class="dashboard-end-note"><span>✳</span> Progress isn’t always loud. It still counts. <button data-go="journal">Save a thought <b>↗</b></button></div>
+          </section>
+
+          <section class="view" id="view-planner" data-view="planner" hidden>
+            <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-star">✳</span> GIVE YOUR WEEK SOME ROOM</div><h1>A plan that <em>breathes.</em></h1><p>A little structure, with plenty of space to be human.</p></div><div class="page-heading-art planner-art"><span>THIS WEEK</span><b>↗</b><i></i><i></i><i></i></div></div>
+            <section class="panel planner-panel"><div class="planner-toolbar"><div><div class="eyebrow">YOUR PERSONAL PLANNER</div><h2 id="planner-range">This week</h2></div><div class="planner-arrows"><button id="week-prev" aria-label="Previous week">←</button><button id="week-next" aria-label="Next week">→</button><button class="today-button" id="week-today">Today</button></div></div><div class="planner-days" id="planner-days"></div><div class="planner-agenda"><div class="agenda-heading"><div><span class="eyebrow" id="agenda-date-label">TODAY</span><h3 id="agenda-title">Your day, with room to move.</h3></div><span class="agenda-count" id="agenda-count">0 PLANS</span></div><div id="agenda-list"></div><form class="planner-form" id="planner-form"><div class="planner-form-title"><span class="planner-add-mark">＋</span><strong>Add something to your day</strong></div><div class="planner-form-fields"><input type="text" id="plan-title" maxlength="72" placeholder="What’s on your mind?" required aria-label="Plan title" /><input type="time" id="plan-time" aria-label="Plan time" /><select id="plan-kind" aria-label="Plan category"><option value="plan">Plan</option><option value="personal">Personal</option><option value="work">Work / study</option><option value="rest">Rest</option></select><button type="submit" class="icon-submit" aria-label="Add plan">Add to day ↗</button></div></form></div></section>
+            <div class="planner-tip"><span>✳</span><p><strong>Leave a little blank space.</strong> Plans are here to support your day, not fill every minute of it.</p></div>
+          </section>
+
+          <section class="view" id="view-focus" data-view="focus" hidden>
+            <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-star">✳</span> A SOFTER KIND OF PRODUCTIVITY</div><h1>Come back to <em>now.</em></h1><p>One tab, one breath, one thing at a time.</p></div><div class="page-heading-art focus-art"><span>IN THE MOMENT</span><b>◌</b></div></div>
+            <div class="focus-layout">
+              <section class="panel timer-panel"><span class="eyebrow">YOUR FOCUS SESSION</span><div class="timer-ring" id="timer-ring"><div class="timer-center"><span class="timer-label" id="timer-status">READY WHEN YOU ARE</span><strong id="timer-display">25:00</strong><span class="timer-caption">minutes for you</span></div></div><div class="timer-presets" role="group" aria-label="Timer duration"><button data-minutes="15">15 min</button><button class="selected" data-minutes="25">25 min</button><button data-minutes="45">45 min</button><button data-minutes="60">60 min</button></div><div class="timer-controls"><button class="button-primary" id="timer-start">Start focus <span>→</span></button><button class="button-secondary" id="timer-reset">Reset</button></div><p class="timer-note">Your timer keeps going while you explore other pages.</p></section>
+              <div class="focus-side"><section class="panel intention-panel"><div class="eyebrow">SET A GENTLE INTENTION</div><h2>What would feel good to finish?</h2><form id="intention-form"><input type="text" maxlength="72" id="focus-intention" placeholder="One thing is enough…" /><button type="submit" aria-label="Save focus intention">↗</button></form><p id="intention-saved">Your intention stays here until you change it.</p></section><section class="panel session-panel"><div class="panel-heading"><div><div class="eyebrow">YOU MADE TIME</div><h2>Focus sessions</h2></div><span class="session-flower">✳</span></div><div class="session-total"><strong id="session-week-minutes">0</strong><span>minutes this week</span></div><div id="focus-session-list"></div></section><div class="focus-quote"><span>“</span><p>It’s okay to do one thing<br />with your whole heart.</p><small>A NOTE TO YOURSELF</small></div></div>
+            </div>
+          </section>
+
+          <section class="view" id="view-goals" data-view="goals" hidden>
+            <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-star">✳</span> YOUR NEXT LITTLE ADVENTURE</div><h1>Choose what <em>matters.</em></h1><p>Big dreams are welcome. So are small, steady habits.</p></div><div class="page-heading-art goals-art"><span>YOUR PACE</span><b>◎</b></div></div>
+            <div class="goal-layout"><section class="panel goal-create-panel"><div class="eyebrow">PLANT A FLAG, NOT A DEADLINE</div><h2>What would you like to move toward?</h2><p>Make it specific enough to begin, flexible enough to grow.</p><form id="goal-form"><label for="goal-title">Give your goal a name</label><input type="text" id="goal-title" maxlength="64" placeholder="e.g. Feel stronger in my body" required /><label for="goal-details">Why it matters <span>OPTIONAL</span></label><textarea id="goal-details" maxlength="140" rows="3" placeholder="A little reminder to future you…"></textarea><button class="button-primary" type="submit">Add to my horizon <span>↗</span></button></form></section><section class="goal-list-section"><div class="goal-list-heading"><div><div class="eyebrow">THE THINGS YOU’RE GROWING</div><h2>Your goals <span id="goal-total">0</span></h2></div><span class="goal-heading-spark">✳</span></div><div id="goal-list"></div></section></div>
+            <section class="panel habit-panel"><div class="panel-heading"><div><div class="eyebrow">THE POWER OF RETURNING</div><h2>Your habit tracker</h2></div><span class="habit-panel-note">Tiny, repeatable promises.</span></div><div class="habit-overview" id="habit-overview"></div></section>
+          </section>
+
+          <section class="view" id="view-journal" data-view="journal" hidden>
+            <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-star">✳</span> A PLACE TO HEAR YOURSELF THINK</div><h1>Leave a note for <em>you.</em></h1><p>It doesn’t need to be polished. Just honest enough to be yours.</p></div><div class="page-heading-art journal-art"><span>NO PERFECT WORDS</span><b>“</b></div></div>
+            <div class="journal-layout"><section class="panel journal-editor"><div class="journal-editor-heading"><div><div class="eyebrow" id="journal-form-label">TODAY, IN YOUR WORDS</div><h2 id="journal-prompt">What’s on your mind?</h2></div><span class="journal-date" id="journal-date"></span></div><form id="journal-form"><textarea id="journal-text" maxlength="2400" rows="8" placeholder="Start anywhere. What felt good? What was a little harder? What do you want to remember?" required></textarea><div class="journal-tools"><label for="journal-mood">RIGHT NOW I FEEL</label><select id="journal-mood"><option>Clear</option><option>Proud</option><option>Curious</option><option>Restless</option><option>Grateful</option><option>Hopeful</option><option>Tired</option></select><span id="journal-length">0 / 2400</span><button class="button-primary" type="submit" id="journal-save">Save reflection <span>↗</span></button><button class="cancel-edit" id="journal-cancel" type="button" hidden>Cancel</button></div></form></section><aside class="journal-side"><div class="journal-prompt-card"><span class="prompt-quote">✳</span><div class="eyebrow">A LITTLE PROMPT</div><p>What is one thing you did today that your past self would be proud of?</p><span class="prompt-caption">NO PERFECT ANSWER NEEDED</span></div><div class="journal-count-card"><span>▤</span><strong id="journal-count">0</strong><small>reflections saved</small></div><div class="journal-private">⌑ <span>Your words stay in this browser.</span></div></aside></div>
+            <section class="journal-archive"><div class="archive-heading"><div><div class="eyebrow">LOOKING BACK</div><h2>Your reflections</h2></div><span class="archive-total" id="archive-total">0 SAVED</span></div><div id="journal-entries"></div></section>
+          </section>
+
+          <section class="view" id="view-progress" data-view="progress" hidden>
+            <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-star">✳</span> THE RECEIPTS, BUT MAKE THEM PERSONAL</div><h1>Look what you’ve <em>done.</em></h1><p>Real rhythms from the real things you’ve done. No guesses, no borrowed stats.</p></div><div class="page-heading-art progress-art"><span>ON YOUR TERMS</span><b>↗</b></div></div>
+            <section class="panel progress-week-panel"><div class="progress-week-copy"><div class="eyebrow">YOUR LAST 7 DAYS</div><h2>Little by little,<br />it adds <em>up.</em></h2><p>Task and goal completions saved on each day.</p><div class="progress-week-total"><strong id="progress-week-total">0</strong><span>COMPLETIONS<br />THIS WEEK</span></div></div><div class="large-week-chart" id="large-week-chart"></div></section>
+            <div class="analytics-cards"><section class="panel analytics-panel"><div class="panel-heading"><div><div class="eyebrow">KEEPING A RHYTHM</div><h2>Monthly activity</h2></div><span class="panel-mark sage-mark">↗</span></div><p>Saved completions across the last six months.</p><div class="month-chart" id="month-chart"></div></section><section class="panel analytics-panel"><div class="panel-heading"><div><div class="eyebrow">SHOWING UP FOR YOU</div><h2>Habit consistency</h2></div><span class="panel-mark pink-mark">✳</span></div><div class="consistency-number"><strong id="active-days">0</strong><span> / 30 days</span></div><p>Days with at least one completion this month.</p><div class="consistency-grid" id="consistency-grid"></div><div class="consistency-legend"><span><i class="legend-dot lavender-dot"></i> Progress logged</span><span><i class="legend-dot empty-dot"></i> Not logged</span></div></section></div>
+            <section class="panel records-panel"><div class="panel-heading"><div><div class="eyebrow">JUST YOU, VERSUS YOU</div><h2>Your personal records</h2></div><span class="record-note">Made from your own data ✳</span></div><div class="record-grid" id="record-grid"></div></section>
+            <section class="panel achievements-panel"><div class="panel-heading"><div><div class="eyebrow">MILESTONES, MADE PERSONAL</div><h2>Achievements</h2></div><span class="achievement-progress" id="achievement-progress">0 / 5</span></div><div class="achievement-grid" id="achievement-grid"></div></section>
+            <div class="data-note">⌑ <span>Your progress is calculated from activity saved in this browser. Quiet days still belong in your story.</span></div>
+          </section>
+        </main>
+        <footer class="footer"><span>EVOLVI</span><span>Small shifts. Your kind of progress.</span><button data-go="journal">Made for becoming <i>↗</i></button></footer>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <button class="active" data-page="dashboard"><span>⌂</span>Home</button><button data-page="planner"><span>▦</span>Planner</button><button data-page="focus"><span>◷</span>Focus</button><button data-page="goals"><span>◎</span>Goals</button><button data-page="progress"><span>⌁</span>Progress</button><button data-page="journal"><span>▤</span>Journal</button>
+    </nav>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <div class="modal-backdrop" id="profile-modal" hidden><form class="profile-modal" id="profile-form"><button class="modal-close" type="button" data-close-profile aria-label="Close">×</button><span class="modal-spark">✳</span><div class="eyebrow">YOUR PERSONAL SPACE</div><h2>Make yourself<br />at home.</h2><p>Your progress is saved privately on this device. No account needed.</p><label for="profile-name">What should we call you?</label><input id="profile-name" type="text" maxlength="32" placeholder="Your name" /><button class="button-primary" type="submit">Save my space <span>↗</span></button><small>⌑ &nbsp; Saved in this browser only</small></form></div>
+  </body>
+</html>
